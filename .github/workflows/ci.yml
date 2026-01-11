@@ -16,7 +16,7 @@ jobs:
 
  build:
   runs-on: ubuntu-latest
-  needs: validate
+  needs: lint
 
   steps:
    - name: Checkout repository
