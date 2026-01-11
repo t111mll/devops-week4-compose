@@ -6,7 +6,7 @@ on:
  pull_request:
 
 jobs:
- validate:
+ lint:
   runs-on: ubuntu-latest
   steps:
    - name: Checkout repository
