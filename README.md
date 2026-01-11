@@ -62,10 +62,32 @@ DB_HOST=db
 - Healthchecks -> readiness probs
 - Volumes -> persistent volumes
 
+##CI/CD Pipeline
+This repository uses **GitHub Actions** to run Continuous Integration on every push and pull request.
+
+### Pipeline Stages
+
+1. **Lint / Validation**
+- Validates the Docker Compose configuration using `docker compose config`
+- Fails fast on YAML or schema errors
+
+2. **Build**
+- Builds the Docker image using `docker build`
+- Runs only if validation succeeds
+
+### Why This Matters
+- Prevents broken configuration from being merged
+- Ensures Docker images are reproducible
+- Mirrors real-world CI pipelines used in production teams
+
+### Trigger
+The pipeline runs automatically on:
+- Pushes to `main`
+- Pull requests
+
 ## Improvements
 - Replace Bash app with a real web service
 - Add port mapping for external access
-- Add CI pipeline to validate Compose config
 
 ## Author
 Timothy Lowe
