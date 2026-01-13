@@ -26,5 +26,4 @@ jobs:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
      run: |
       echo "Secret injected successfully"
-      echo "Password length: ${#POSTGRES_PASSWORD}"
       docker build -t devops-week4-app .
