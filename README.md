@@ -59,10 +59,10 @@ DB_HOST=db
 ## What This Maps To In Production
 - Docker Compose services -> Kubernetes Deployments
 - Service names -> Kubernetes Services (DNS)
-- Healthchecks -> readiness probs
+- Healthchecks -> readiness probes
 - Volumes -> persistent volumes
 
-##CI/CD Pipeline
+## CI/CD Pipeline
 This repository uses **GitHub Actions** to run Continuous Integration on every push and pull request.
 
 ### Pipeline Stages
@@ -90,5 +90,5 @@ The pipeline runs automatically on:
 - Add port mapping for external access
 
 ## Author
-Timothy Lowe
+**Timothy Lowe**
 Aspiring DevOps / Cloud Engineer
