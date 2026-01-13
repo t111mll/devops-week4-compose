@@ -39,7 +39,7 @@ jobs:
      uses: actions/checkout@v4
    - name: Build Docker image (prod)
      env:
-      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_PASSWORD: ${{ sercrets.POSTGRES_PASSWORD }}
      run: |
       echo "Building image for production"
       docker build -t devops-week4-app:prod .
