@@ -49,6 +49,7 @@ jobs:
   environment: production
 
   steps:
+   - name: Checkout repository
      uses: actions/checkout@v4
    - name: Build Docker image (prod)
      env:
