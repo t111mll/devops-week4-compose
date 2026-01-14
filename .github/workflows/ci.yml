@@ -5,6 +5,10 @@ on:
   branches: [ "main" ]
  pull_request:
 
+permissions:
+ contents: read
+ packages: write
+
 jobs:
  lint:
   runs-on: ubuntu-latest
@@ -22,12 +26,23 @@ jobs:
   steps:
    - name: Checkout repository
      uses: actions/checkout@v4
-   - name: Build Docker image
+
+   - name: Log in to Github Container Registry
+     uses: docker/login-action@v3
+     with:
+      registry: ghcr.io
+      username: ${{ github.actor }}
+      password: ${{ secrets.GITHUB_TOKEN }}
+
+   - name: Build Docker image (dev)
      env:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
      run: |
       echo "Secret injected successfully"
-      docker build -t devops-week4-app .
+      IMAGE_NAME=ghcr.io/${{ github.repository }}
+      docker build -t $IMAGE_NAME:dev .
+      docker push $IMAGE_NAME:dev
+
 
  build-prod:
   runs-on: ubuntu-latest
@@ -35,7 +50,6 @@ jobs:
   environment: production
 
   steps:
-   - name: Checkout repository
      uses: actions/checkout@v4
    - name: Build Docker image (prod)
      env:
