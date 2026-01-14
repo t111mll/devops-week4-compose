@@ -43,7 +43,6 @@ jobs:
       docker build -t $IMAGE_NAME:dev .
       docker push $IMAGE_NAME:dev
 
-
  build-prod:
   runs-on: ubuntu-latest
   needs: lint
