@@ -85,6 +85,34 @@ The pipeline runs automatically on:
 - Pushes to `main`
 - Pull requests
 
+## Secure CI/CD Pipeline
+This repository implements a secure CI/CD pipeline using Github Actions.
+
+### Key security Practices
+- **Secrets management**: Sensitive values are stored as Github Actions secrets and injected at runtime.
+- **Environment separation**: Development and production use separate Github Environments with different secrets.
+- **Protected production**: Production jobs can require manual approval via environment protection rules.
+- **Least privilege**: Workflow permissions are limited to repository read and package write access only.
+- **No secrets in images**: Secrets are never baked into Docker images or committed to Git.
+
+### Pipeline Flow
+1. **Lint / Validation**
+	- Validation Docker Compose configuration.
+	- Fails fast on YAML or schema errors.
+
+2. **Build (Development)**
+	- Builds and pushes a `:dev` image to GitHub Container Registry.
+	- Runs automatically on every push.
+
+3. **Build (Production)**
+	- Builds and pushes a `:prod` image.
+	- Targets a protected environment and can require manual approval.
+
+### Why This Matters
+- Prevents accidental production changes.
+- Ensures reproducible and auditable image builds.
+- Mirrors secure CI/CD pipelines used in real production teams
+
 ## Improvements
 - Replace Bash app with a real web service
 - Add port mapping for external access
