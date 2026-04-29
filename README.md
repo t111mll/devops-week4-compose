@@ -119,4 +119,3 @@ This repository implements a secure CI/CD pipeline using Github Actions.
 
 ## Author
 **Timothy Lowe**
-Aspiring DevOps / Cloud Engineer
